@@ -1,0 +1,8 @@
+Docker commands for building, tagging and deploying the application:
+docker build -t loc-agent-docker-app
+
+docker tag loc-agent-docker-app <dockerhub_username>/loc-agent-docker-app:v1
+
+docker push <dockerhub_username>/loc-agent-docker-app:v1
+
+docker run -p 8080:8080 loc-agent-docker-app
