@@ -1,13 +1,11 @@
 import os
 
-from crewai_tools import PDFSearchTool
+from crewai_tools import DirectorySearchTool
 from dotenv import load_dotenv
 from google.adk.agents import Agent
 from google.adk.tools.crewai_tool import CrewaiTool
 
 load_dotenv()
-
-
 
 root_agent = Agent(
     name="pdf_query_agent",
@@ -23,9 +21,10 @@ root_agent = Agent(
             CrewaiTool(
                 name="search_info_in_PDF",
                 description=(
-                    """Searches for the answers to the user's question in the PDF"""
+                    """Searches for the answers to the user's question in all PDFs present in
+                    the provided directory"""
                 ),
-                tool = PDFSearchTool(pdf='pdf_reader_agent/BankStatement.pdf')
+                tool = DirectorySearchTool(directory='pdf_reader_agent')
             )
         ]
 
